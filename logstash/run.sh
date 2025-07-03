@@ -1,5 +1,5 @@
-docker run --rm -it \
+docker run -it \
+  --name logstash-890 \
   -v ./pipeline/:/usr/share/logstash/pipeline/ \
   -v ./input.log:/usr/share/logstash/data/input.log \
-  -v ./logstash.yml:/usr/share/logstash/config/logstash.yml \
-  docker.elastic.co/logstash/logstash:9.0.0
+  docker.elastic.co/logstash/logstash:8.9.0
