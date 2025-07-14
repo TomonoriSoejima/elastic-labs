@@ -36,6 +36,10 @@ processors:
       timezone: "UTC"
       ignore_missing: true
 
+  - drop_fields:
+      fields: ["host.os.version"]
+      ignore_missing: false
+
 output.elasticsearch:
   hosts: ["http://elasticsearch:9200"]  # Link to Elasticsearch container
 
