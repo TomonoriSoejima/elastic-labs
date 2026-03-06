@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myspark-apm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myspark
+  template:
+    metadata:
+      labels:
+        app: myspark
+    spec:
+      containers:
+      - name: myspark
+        image: myspark-apm
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 4567

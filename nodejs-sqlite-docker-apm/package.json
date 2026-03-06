@@ -1,0 +1,14 @@
+{
+  "name": "nodejs-sqlite-docker",
+  "version": "1.0.0",
+  "description": "A simple Node.js app with SQLite running in Docker and Elastic APM",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "elastic-apm-node": "^4.0.0"
+  }
+}

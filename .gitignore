@@ -1,1 +1,67 @@
+# ============================================================
+# Customer Data Protection - NEVER commit these
+# ============================================================
+
+# Diagnostic artifacts
+**/logs/
+**/log/
+**/*.log
+**/*.ndjson
+**/*.pcap
+**/*.pme
+**/*.etl
+**/*.dmp
+**/*.core
+**/*.har
+**/diagnostic-*.zip
+**/diagnostics/
+**/diag_*/
+
+# Profiling and debugging output
+**/*.v8.log*
+**/isolate-*
+**/*.0x/
+**/*.prof
+**/*.heapsnapshot
+
+# Archives and data files
+**/*.zip
+**/*.tar
+**/*.tar.gz
+**/*.tgz
+**/*.gz
+**/*.7z
+**/*.csv
+**/*.tsv
+**/*.jsonl
+
+# Customer identifiers
+**/*customer*
+**/*prod*
+**/*secret*
+**/*token*
+
+# Sensitive configs
+**/.env
+**/.env.*
+**/config.production.*
+
+# Large dependencies
+**/node_modules/
+**/.venv/
+**/venv/
+**/__pycache__/
+**/.pytest_cache/
+
+# IDE
+**/.idea/
+**/.vscode/
+**/.DS_Store
+
+# Allow synthetic test data
+!**/*.synthetic.*
+!**/sample-data.synthetic.*
+!**/test-data.synthetic.*
+
+# Legacy
 packetbeat/response.json

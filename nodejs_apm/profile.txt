@@ -1,0 +1,637 @@
+Statistical profiling result from isolate-0x138008000-93084-v8.log, (632 ticks, 28 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+     34    5.4%          /usr/lib/system/libsystem_c.dylib
+      8    1.3%          /usr/lib/system/libsystem_malloc.dylib
+      8    1.3%          /usr/lib/libc++.1.dylib
+      2    0.3%          /usr/lib/system/libsystem_kernel.dylib
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+      1    0.2%    0.2%  JS: ^stat node:internal/modules/cjs/loader:248:14
+      1    0.2%    0.2%  JS: +resolve node:path:1175:10
+      1    0.2%    0.2%  JS: +findLongestRegisteredExtension node:internal/modules/cjs/loader:564:40
+      1    0.2%    0.2%  JS: +<anonymous> node:internal/validators:161:40
+      1    0.2%    0.2%  JS: *normalizeString node:path:77:25
+      1    0.2%    0.2%  JS: *<anonymous> node:internal/modules/cjs/loader:877:37
+
+ [C++]:
+   ticks  total  nonlib   name
+    239   37.8%   41.2%  T _thread_info
+    114   18.0%   19.7%  t node::credentials::GetUid(v8::FunctionCallbackInfo<v8::Value> const&)
+     60    9.5%   10.3%  T _mig_get_reply_port
+     20    3.2%    3.4%  T _write
+     13    2.1%    2.2%  t __pthread_mutex_global_init
+     13    2.1%    2.2%  T ___pthread_init
+      8    1.3%    1.4%  T _host_get_clock_service
+      7    1.1%    1.2%  t std::__1::ostreambuf_iterator<char, std::__1::char_traits<char>> std::__1::__pad_and_output[abi:nn180100]<char, std::__1::char_traits<char>>(std::__1::ostreambuf_iterator<char, std::__1::char_traits<char>>, char const*, char const*, char const*, std::__1::ios_base&, char)
+      7    1.1%    1.2%  T __kernelrpc_mach_port_get_set_status
+      6    0.9%    1.0%  t __os_nospin_lock_unlock_slow
+      6    0.9%    1.0%  T _task_set_special_port
+      6    0.9%    1.0%  T _pthread_key_init_np
+      5    0.8%    0.9%  t std::__1::basic_ostream<char, std::__1::char_traits<char>>& std::__1::__put_character_sequence[abi:nn180100]<char, std::__1::char_traits<char>>(std::__1::basic_ostream<char, std::__1::char_traits<char>>&, char const*, unsigned long)
+      4    0.6%    0.7%  t __pthread_bsdthread_init
+      4    0.6%    0.7%  T _mach_absolute_time
+      2    0.3%    0.3%  t __pthread_set_main_qos
+      2    0.3%    0.3%  t __os_once_gate_wait
+      2    0.3%    0.3%  t __os_once_gate_broadcast
+      2    0.3%    0.3%  t __os_nospin_lock_lock_slow
+      2    0.3%    0.3%  t _Builtins_LoadIC
+      2    0.3%    0.3%  T _pthread_key_create
+      2    0.3%    0.3%  T __os_semaphore_create
+      1    0.2%    0.2%  t node::StaticExternalByteResource<unsigned short, unsigned short, v8::String::ExternalStringResource>::data() const
+      1    0.2%    0.2%  t icu_76::umtx_init()
+      1    0.2%    0.2%  t _mach_msg_destroy_port
+      1    0.2%    0.2%  t __pthread_main_thread_init
+      1    0.2%    0.2%  t _Builtins_StringSubstring
+      1    0.2%    0.2%  t _Builtins_StoreIC
+      1    0.2%    0.2%  t _Builtins_KeyedLoadIC
+      1    0.2%    0.2%  t _Builtins_InterpreterEntryTrampoline
+      1    0.2%    0.2%  t _Builtins_FindOrderedHashMapEntry
+      1    0.2%    0.2%  t _Builtins_Call_ReceiverIsNullOrUndefined_Baseline_Compact
+      1    0.2%    0.2%  t _Builtins_Call_ReceiverIsNullOrUndefined
+      1    0.2%    0.2%  t _Builtins_Call_ReceiverIsAny
+      1    0.2%    0.2%  t _Builtins_BaselineLeaveFrame
+      1    0.2%    0.2%  t _Builtins_ArrayPrototypeJoin
+      1    0.2%    0.2%  T _uv_free_cpu_info
+      1    0.2%    0.2%  T _ssl_fill_hello_random
+      1    0.2%    0.2%  T _mach_port_get_attributes
+      1    0.2%    0.2%  T _OSSL_HTTP_parse_url
+      1    0.2%    0.2%  T _BN_GF2m_mod_mul
+      1    0.2%    0.2%  T _ASN1_verify
+
+ [Summary]:
+   ticks  total  nonlib   name
+      6    0.9%    1.0%  JavaScript
+    546   86.4%   94.1%  C++
+      1    0.2%    0.2%  GC
+     52    8.2%          Shared libraries
+     28    4.4%          Unaccounted
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+     94   32.1%   14.9%  t node::credentials::GetUid(v8::FunctionCallbackInfo<v8::Value> const&)
+     59   20.1%    9.3%  T _mig_get_reply_port
+     18    6.1%    2.8%  T _write
+     13    4.4%    2.1%  T ___pthread_init
+     12    4.1%    1.9%  t __pthread_mutex_global_init
+      8    2.7%    1.3%  T _host_get_clock_service
+      7    2.4%    1.1%  T __kernelrpc_mach_port_get_set_status
+      6    2.0%    0.9%  t std::__1::ostreambuf_iterator<char, std::__1::char_traits<char>> std::__1::__pad_and_output[abi:nn180100]<char, std::__1::char_traits<char>>(std::__1::ostreambuf_iterator<char, std::__1::char_traits<char>>, char const*, char const*, char const*, std::__1::ios_base&, char)
+      6    2.0%    0.9%  t __os_nospin_lock_unlock_slow
+      6    2.0%    0.9%  T _task_set_special_port
+      6    2.0%    0.9%  T _pthread_key_init_np
+      5    1.7%    0.8%  t std::__1::basic_ostream<char, std::__1::char_traits<char>>& std::__1::__put_character_sequence[abi:nn180100]<char, std::__1::char_traits<char>>(std::__1::basic_ostream<char, std::__1::char_traits<char>>&, char const*, unsigned long)
+      4    1.4%    0.6%  t __pthread_bsdthread_init
+      4    1.4%    0.6%  t _Builtins_StringPrototypeReplace
+      4    1.4%    0.6%  T _mach_absolute_time
+      3    1.0%    0.5%  t _Builtins_RegExpPrototypeTest
+      2    0.7%    0.3%  t __pthread_set_main_qos
+      2    0.7%    0.3%  t __os_once_gate_wait
+      2    0.7%    0.3%  t __os_once_gate_broadcast
+      2    0.7%    0.3%  t __os_nospin_lock_lock_slow
+      2    0.7%    0.3%  t _Builtins_SetPrototypeHas
+      2    0.7%    0.3%  t _Builtins_MapPrototypeGet
+      2    0.7%    0.3%  t _Builtins_LoadIC
+      2    0.7%    0.3%  T _pthread_key_create
+      2    0.7%    0.3%  T __os_semaphore_create
+      1    0.3%    0.2%  t node::StaticExternalByteResource<unsigned short, unsigned short, v8::String::ExternalStringResource>::data() const
+      1    0.3%    0.2%  t _mach_msg_destroy_port
+      1    0.3%    0.2%  t __pthread_main_thread_init
+      1    0.3%    0.2%  t _Builtins_StringSubstring
+      1    0.3%    0.2%  t _Builtins_StoreIC
+      1    0.3%    0.2%  t _Builtins_RegExpPrototypeExec
+      1    0.3%    0.2%  t _Builtins_RegExpConstructor
+      1    0.3%    0.2%  t _Builtins_MapPrototypeSet
+      1    0.3%    0.2%  t _Builtins_KeyedLoadIC
+      1    0.3%    0.2%  t _Builtins_InterpreterEntryTrampoline
+      1    0.3%    0.2%  t _Builtins_Call_ReceiverIsNullOrUndefined_Baseline_Compact
+      1    0.3%    0.2%  t _Builtins_Call_ReceiverIsNullOrUndefined
+      1    0.3%    0.2%  t _Builtins_Call_ReceiverIsAny
+      1    0.3%    0.2%  t _Builtins_CEntry_Return1_ArgvOnStack_NoBuiltinExit
+      1    0.3%    0.2%  t _Builtins_BaselineLeaveFrame
+      1    0.3%    0.2%  t _Builtins_ArrayPrototypeJoin
+      1    0.3%    0.2%  T _uv_free_cpu_info
+      1    0.3%    0.2%  T _ssl_fill_hello_random
+      1    0.3%    0.2%  T _BN_GF2m_mod_mul
+      1    0.3%    0.2%  T _ASN1_verify
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+    239   37.8%  T _thread_info
+
+    114   18.0%  t node::credentials::GetUid(v8::FunctionCallbackInfo<v8::Value> const&)
+     30   26.3%    JS: ^wrapSafe node:internal/modules/cjs/loader:1628:18
+     29   96.7%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+     29  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+     29  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+     29  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      1    3.3%      JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/semver/index.js:1:1
+      1  100.0%        JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/activation-method.js:1:1
+      1  100.0%          JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/agent.js:1:1
+      1  100.0%            JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/index.js:1:1
+     21   18.4%    JS: +wrapSafe node:internal/modules/cjs/loader:1628:18
+     21  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+     21  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+     21  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+     21  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+     18   15.8%    JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+     14   77.8%      JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      2   14.3%        JS: ~<anonymous> node:http:1:1
+      2  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      2  100.0%            JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/agent.js:1:1
+      2   14.3%        JS: ~<anonymous> node:_http_client:1:1
+      2  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      2  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1    7.1%        JS: ~<anonymous> node:stream:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1    7.1%        JS: ~<anonymous> node:net:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1    7.1%        JS: ~<anonymous> node:internal/worker:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1    7.1%        JS: ~<anonymous> node:internal/streams/operators:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1    7.1%        JS: ~<anonymous> node:internal/streams/duplex:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1    7.1%        JS: ~<anonymous> node:internal/streams/compose:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1    7.1%        JS: ~<anonymous> node:internal/fs/promises:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1    7.1%        JS: ~<anonymous> node:internal/cluster/round_robin_handle:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1    7.1%        JS: ~<anonymous> node:crypto:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^compileForPublicLoader node:internal/bootstrap/realm:335:25
+      1    7.1%        JS: ~<anonymous> node:assert:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^compileForPublicLoader node:internal/bootstrap/realm:335:25
+      4   22.2%      JS: +requireBuiltin node:internal/bootstrap/realm:424:24
+      1   25.0%        JS: ~lookupAndConnect node:net:1309:26
+      1  100.0%          JS: ~Socket.connect node:net:1227:36
+      1  100.0%            JS: ~connect node:_tls_wrap:1744:35
+      1   25.0%        JS: ~<anonymous> node:tls:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: +requireBuiltin node:internal/bootstrap/realm:424:24
+      1   25.0%        JS: ~<anonymous> node:internal/perf/performance:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: +requireBuiltin node:internal/bootstrap/realm:424:24
+      1   25.0%        JS: ~<anonymous> node:child_process:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^compileForPublicLoader node:internal/bootstrap/realm:335:25
+      4    3.5%    t _Builtins_StringPrototypeReplace
+      1   25.0%      JS: ~resolveModuleName /Users/surfer/elastic/lab/nodejs_apm/node_modules/require-in-the-middle/index.js:377:28
+      1  100.0%        JS: ~patchedRequire /Users/surfer/elastic/lab/nodejs_apm/node_modules/require-in-the-middle/index.js:200:27
+      1  100.0%          JS: ~Hook._require.Module.require /Users/surfer/elastic/lab/nodejs_apm/node_modules/require-in-the-middle/index.js:172:55
+      1  100.0%            JS: ^require node:internal/modules/helpers:134:19
+      1   25.0%      JS: ~replaceXRange /Users/surfer/elastic/lab/nodejs_apm/node_modules/semver/classes/range.js:392:23
+      1  100.0%        JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/semver/classes/range.js:388:10
+      1  100.0%          t _Builtins_ArrayMap
+      1  100.0%            JS: ~replaceXRanges /Users/surfer/elastic/lab/nodejs_apm/node_modules/semver/classes/range.js:384:24
+      1   25.0%      JS: ~parseRange /Users/surfer/elastic/lab/nodejs_apm/node_modules/semver/classes/range.js:100:14
+      1  100.0%        JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/semver/classes/range.js:42:12
+      1  100.0%          t _Builtins_ArrayMap
+      1  100.0%            JS: ~Range /Users/surfer/elastic/lab/nodejs_apm/node_modules/semver/classes/range.js:7:15
+      1   25.0%      JS: ~module.exports /Users/surfer/elastic/lab/nodejs_apm/node_modules/escape-string-regexp/index.js:3:18
+      1  100.0%        JS: ~starMatchToRegex /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/wildcard-matcher.js:18:26
+      1  100.0%          JS: ~compile /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/wildcard-matcher.js:43:10
+      1  100.0%            JS: ~normalizeElasticsearchCaptureBodyUrls /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/config/normalizers.js:466:47
+      3    2.6%    t _Builtins_RegExpPrototypeTest
+      2   66.7%      JS: ~calculateServerName node:_http_agent:334:29
+      2  100.0%        JS: ~normalizeServerName node:_http_agent:329:29
+      2  100.0%          JS: ~addRequest node:_http_agent:230:49
+      2  100.0%            JS: ~ClientRequest node:_http_client:137:23
+      1   33.3%      JS: ~lookupAndConnect node:net:1309:26
+      1  100.0%        JS: ~Socket.connect node:net:1227:36
+      1  100.0%          JS: ~connect node:_tls_wrap:1744:35
+      1  100.0%            JS: ~createConnection node:https:141:26
+      2    1.8%    t _Builtins_SetPrototypeHas
+      2  100.0%      JS: +realpathSync node:fs:2712:22
+      2  100.0%        JS: +toRealPath node:internal/modules/helpers:60:20
+      2  100.0%          JS: +tryExtensions node:internal/modules/cjs/loader:549:23
+      1   50.0%            JS: ^tryPackage node:internal/modules/cjs/loader:492:20
+      1   50.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:697:28
+      2    1.8%    JS: ~WriteStream node:tty:88:21
+      1   50.0%      JS: ~refresh node:internal/util/colors:26:10
+      1  100.0%        JS: ~<anonymous> node:internal/util/colors:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1   50.0%      JS: ~normalizeArgs /Users/surfer/elastic/lab/nodejs_apm/node_modules/pino/lib/tools.js:291:33
+      1  100.0%        JS: ~pino /Users/surfer/elastic/lab/nodejs_apm/node_modules/pino/pino.js:88:15
+      1  100.0%          JS: ~createServer /Users/surfer/elastic/lab/nodejs_apm/node_modules/restify/lib/index.js:73:22
+      1  100.0%            JS: ~wrappedCreateServer /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/instrumentation/modules/restify.js:44:40
+      2    1.8%    JS: ~<anonymous> node:internal/main/run_main_module:1:1
+
+     60    9.5%  T _mig_get_reply_port
+     33   55.0%    JS: ^readFileSync node:fs:436:22
+     30   90.9%      JS: ^defaultLoadImpl node:internal/modules/cjs/loader:1117:25
+     30  100.0%        JS: ^loadSource node:internal/modules/cjs/loader:1755:20
+     30  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+     30  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      3    9.1%      JS: +defaultLoadImpl node:internal/modules/cjs/loader:1117:25
+      3  100.0%        JS: ^loadSource node:internal/modules/cjs/loader:1755:20
+      3  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      3  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      7   11.7%    JS: ^read node:internal/modules/package_json_reader:107:14
+      7  100.0%      JS: ^readPackage node:internal/modules/package_json_reader:133:21
+      7  100.0%        JS: ^resolveExports node:internal/modules/cjs/loader:643:24
+      7  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:697:28
+      7  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1321:35
+      5    8.3%    JS: +wrapSafe node:internal/modules/cjs/loader:1628:18
+      5  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+      5  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      5  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      5  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      5    8.3%    JS: +getNearestParentPackageJSON node:internal/modules/package_json_reader:144:37
+      3   60.0%      JS: ^trySelf node:internal/modules/cjs/loader:601:17
+      3  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1321:35
+      3  100.0%          JS: +defaultResolveImpl node:internal/modules/cjs/loader:1046:30
+      2   66.7%            JS: ^resolveForCJSWithHooks node:internal/modules/cjs/loader:1041:32
+      1   33.3%            JS: +resolveForCJSWithHooks node:internal/modules/cjs/loader:1041:32
+      2   40.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      2  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      2  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      2  100.0%            JS: ^traceSync node:diagnostics_channel:320:12
+      3    5.0%    JS: ^defaultLoadImpl node:internal/modules/cjs/loader:1117:25
+      2   66.7%      JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      1   50.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      1  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      1  100.0%            JS: ^traceSync node:diagnostics_channel:320:12
+      1   50.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      1  100.0%          JS: ^traceSync node:diagnostics_channel:320:12
+      1  100.0%            JS: ^wrapModuleLoad node:internal/modules/cjs/loader:227:24
+      1   33.3%      JS: ^loadSource node:internal/modules/cjs/loader:1755:20
+      1  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      1  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      1  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      2    3.3%    JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1   50.0%      JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1  100.0%        JS: ~<anonymous> node:internal/readline/interface:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1   50.0%      JS: ^compileForPublicLoader node:internal/bootstrap/realm:335:25
+      1  100.0%        JS: ^loadBuiltinModule node:internal/modules/helpers:101:27
+      1  100.0%          JS: ^loadBuiltinWithHooks node:internal/modules/cjs/loader:1163:30
+      1  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      1    1.7%    JS: ~arrayEach /Users/surfer/elastic/lab/nodejs_apm/node_modules/lodash/lodash.js:525:21
+      1  100.0%      JS: ~runInContext /Users/surfer/elastic/lab/nodejs_apm/node_modules/lodash/lodash.js:1448:44
+      1  100.0%        JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/lodash/lodash.js:9:11
+      1  100.0%          JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/lodash/lodash.js:1:1
+      1  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+      1    1.7%    JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/activation-method.js:1:1
+      1  100.0%      JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/agent.js:1:1
+      1  100.0%        JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/index.js:1:1
+      1  100.0%          JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/apm_restify_demo.js:1:1
+      1  100.0%            JS: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    1.7%    JS: ^wrapSafe node:internal/modules/cjs/loader:1628:18
+      1  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+      1  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      1  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      1  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      1    1.7%    JS: ^<anonymous> node:internal/modules/cjs/loader:697:28
+      1  100.0%      JS: ^defaultResolveImpl node:internal/modules/cjs/loader:1046:30
+      1  100.0%        JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/activation-method.js:1:1
+      1  100.0%          JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/agent.js:1:1
+      1  100.0%            JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/index.js:1:1
+
+     34    5.4%  /usr/lib/system/libsystem_c.dylib
+     13   38.2%    JS: ^wrapSafe node:internal/modules/cjs/loader:1628:18
+     13  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+     13  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+     13  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+     13  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      7   20.6%    JS: +wrapSafe node:internal/modules/cjs/loader:1628:18
+      7  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+      7  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      7  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      7  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      5   14.7%    JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      3   60.0%      JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1   33.3%        JS: ~<anonymous> node:internal/streams/readable:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1   33.3%        JS: ~<anonymous> node:internal/modules/esm/resolve:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1   33.3%        JS: ~<anonymous> node:fs/promises:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^compileForPublicLoader node:internal/bootstrap/realm:335:25
+      1   20.0%      JS: ^compileForPublicLoader node:internal/bootstrap/realm:335:25
+      1  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      1  100.0%          JS: ^traceSync node:diagnostics_channel:320:12
+      1  100.0%            JS: ^wrapModuleLoad node:internal/modules/cjs/loader:227:24
+      1   20.0%      JS: +requireBuiltin node:internal/bootstrap/realm:424:24
+      1  100.0%        JS: ~<anonymous> node:internal/child_process:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: +requireBuiltin node:internal/bootstrap/realm:424:24
+      3    8.8%    JS: ~<anonymous> node:internal/main/run_main_module:1:1
+      2    5.9%    JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/apm_restify_demo.js:1:1
+      2  100.0%      JS: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    2.9%    JS: ~start /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/cloud-metadata/callback-coordination.js:96:8
+      1  100.0%      JS: ~getCloudMetadata /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/cloud-metadata/index.js:62:19
+      1  100.0%        JS: ~Client._fetchAndEncodeMetadata /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/apm-client/http-apm-client/index.js:1588:53
+      1  100.0%          JS: ~Client /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/apm-client/http-apm-client/index.js:96:16
+      1  100.0%            JS: ~createApmClient /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/apm-client/apm-client.js:31:25
+      1    2.9%    JS: ~ensure /Users/surfer/elastic/lab/nodejs_apm/node_modules/object-identity-map/index.js:49:10
+      1  100.0%      JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/metrics/reporter.js:32:27
+      1  100.0%        JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/after-all-results/index.js:19:33
+      1  100.0%          JS: ^processTicksAndRejections node:internal/process/task_queues:72:35
+      1    2.9%    JS: ~emitListeningNT node:net:1977:25
+      1  100.0%      JS: ^processTicksAndRejections node:internal/process/task_queues:72:35
+
+     28    4.4%  UNKNOWN
+     12   42.9%    JS: ^wrapSafe node:internal/modules/cjs/loader:1628:18
+     12  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+     12  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+     12  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+     12  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      5   17.9%    JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      4   80.0%      JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1   25.0%        JS: ~<anonymous> node:tty:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1   25.0%        JS: ~<anonymous> node:module:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^compileForPublicLoader node:internal/bootstrap/realm:335:25
+      1   25.0%        JS: ~<anonymous> node:crypto:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^compileForPublicLoader node:internal/bootstrap/realm:335:25
+      1   25.0%        JS: ^resolveExports node:internal/modules/cjs/loader:643:24
+      1  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:697:28
+      1  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1321:35
+      1   20.0%      JS: +requireBuiltin node:internal/bootstrap/realm:424:24
+      1  100.0%        JS: ~<anonymous> node:https:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^compileForPublicLoader node:internal/bootstrap/realm:335:25
+      5   17.9%    JS: +wrapSafe node:internal/modules/cjs/loader:1628:18
+      5  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+      5  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      5  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      5  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      2    7.1%    JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/apm_restify_demo.js:1:1
+      2  100.0%      JS: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    3.6%    t _Builtins_SetPrototypeHas
+      1  100.0%      JS: +realpathSync node:fs:2712:22
+      1  100.0%        JS: ^toRealPath node:internal/modules/helpers:60:20
+      1  100.0%          JS: ^tryFile node:internal/modules/cjs/loader:534:17
+      1  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:697:28
+      1    3.6%    JS: ~SonicBoom /Users/surfer/elastic/lab/nodejs_apm/node_modules/sonic-boom/index.js:93:20
+      1  100.0%      JS: ~buildSafeSonicBoom /Users/surfer/elastic/lab/nodejs_apm/node_modules/pino/lib/tools.js:236:29
+      1  100.0%        JS: ~module.exports.destination /Users/surfer/elastic/lab/nodejs_apm/node_modules/pino/pino.js:210:30
+      1  100.0%          JS: ~createLogger /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/logging.js:119:22
+      1  100.0%            JS: ~configLogger /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/config/config.js:87:22
+      1    3.6%    JS: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    3.6%    JS: +dirname node:path:1365:10
+      1  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+      1  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      1  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      1  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+
+     20    3.2%  T _write
+      6   30.0%    JS: +wrapSafe node:internal/modules/cjs/loader:1628:18
+      6  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+      6  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      6  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      6  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      3   15.0%    JS: ^wrapSafe node:internal/modules/cjs/loader:1628:18
+      3  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+      3  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      3  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      3  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      1    5.0%    JS: ~socketOnData node:_http_client:551:22
+      1  100.0%      JS: ^emit node:events:454:44
+      1  100.0%        JS: ~addChunk node:internal/streams/readable:548:18
+      1  100.0%          JS: ~readableAddChunkPushByteMode node:internal/streams/readable:461:38
+      1  100.0%            JS: ~Readable.push node:internal/streams/readable:385:35
+      1    5.0%    JS: ~runInContext /Users/surfer/elastic/lab/nodejs_apm/node_modules/lodash/lodash.js:1448:44
+      1  100.0%      JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/lodash/lodash.js:9:11
+      1  100.0%        JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/lodash/lodash.js:1:1
+      1  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+      1  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      1    5.0%    JS: ~createSystemMetrics /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/metrics/platforms/generic/index.js:13:46
+      1  100.0%      JS: ~MetricsRegistry /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/metrics/registry.js:22:14
+      1  100.0%        JS: ~start /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/metrics/index.js:32:8
+      1  100.0%          JS: ~Agent.start /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/agent.js:274:34
+      1  100.0%            JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/apm_restify_demo.js:1:1
+      1    5.0%    JS: ~StaticNode /Users/surfer/elastic/lab/nodejs_apm/node_modules/find-my-way/lib/node.js:82:15
+      1  100.0%      JS: ~_on /Users/surfer/elastic/lab/nodejs_apm/node_modules/find-my-way/index.js:142:37
+      1  100.0%        JS: ~on /Users/surfer/elastic/lab/nodejs_apm/node_modules/find-my-way/index.js:96:35
+      1  100.0%          JS: ~add /Users/surfer/elastic/lab/nodejs_apm/node_modules/restify/lib/routerRegistryRadix.js:36:49
+      1  100.0%            JS: ~mount /Users/surfer/elastic/lab/nodejs_apm/node_modules/restify/lib/router.js:181:40
+      1    5.0%    JS: ~Server /Users/surfer/elastic/lab/nodejs_apm/node_modules/restify/lib/server.js:125:16
+      1  100.0%      JS: ~createServer /Users/surfer/elastic/lab/nodejs_apm/node_modules/restify/lib/index.js:73:22
+      1  100.0%        JS: ~wrappedCreateServer /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/instrumentation/modules/restify.js:44:40
+      1  100.0%          JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/apm_restify_demo.js:1:1
+      1  100.0%            JS: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    5.0%    JS: ~Client /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/apm-client/http-apm-client/index.js:96:16
+      1  100.0%      JS: ~createApmClient /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/apm-client/apm-client.js:31:25
+      1  100.0%        JS: ~Agent.start /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/agent.js:274:34
+      1  100.0%          JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/apm_restify_demo.js:1:1
+      1  100.0%            JS: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    5.0%    JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/agentkeepalive/lib/agent.js:193:16
+      1  100.0%      JS: ~createConnection /Users/surfer/elastic/lab/nodejs_apm/node_modules/agentkeepalive/lib/https_agent.js:28:19
+      1  100.0%        JS: ~createSocket node:_http_agent:296:53
+      1  100.0%          JS: ~addRequest node:_http_agent:230:49
+      1  100.0%            JS: ~ClientRequest node:_http_client:137:23
+      1    5.0%    JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/apm_restify_demo.js:26:31
+      1  100.0%      JS: ^emit node:events:454:44
+      1  100.0%        JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/instrumentation/http-shared.js:100:21
+      1  100.0%          JS: ~emitListeningNT node:net:1977:25
+      1  100.0%            JS: ^processTicksAndRejections node:internal/process/task_queues:72:35
+      1    5.0%    JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%      JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1  100.0%        JS: ~<anonymous> node:stream:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+
+     13    2.1%  t __pthread_mutex_global_init
+      3   23.1%    JS: ^wrapSafe node:internal/modules/cjs/loader:1628:18
+      3  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+      3  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      3  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      3  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      3   23.1%    JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      2   66.7%      JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1   50.0%        JS: ~<anonymous> node:internal/crypto/hkdf:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1   50.0%        JS: ~<anonymous> node:_http_agent:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1   33.3%      JS: +requireBuiltin node:internal/bootstrap/realm:424:24
+      1  100.0%        JS: ~<anonymous> node:tls:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: +requireBuiltin node:internal/bootstrap/realm:424:24
+      1    7.7%    JS: ~compare /Users/surfer/elastic/lab/nodejs_apm/node_modules/semver/functions/compare.js:4:17
+      1  100.0%      JS: ~gte /Users/surfer/elastic/lab/nodejs_apm/node_modules/semver/functions/gte.js:4:13
+      1  100.0%        JS: ~cmp /Users/surfer/elastic/lab/nodejs_apm/node_modules/semver/functions/cmp.js:10:13
+      1  100.0%          JS: ~test /Users/surfer/elastic/lab/nodejs_apm/node_modules/semver/classes/comparator.js:61:8
+      1  100.0%            JS: ~testSet /Users/surfer/elastic/lab/nodejs_apm/node_modules/semver/classes/range.js:522:17
+      1    7.7%    JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/agent.js:1:1
+      1  100.0%      JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/index.js:1:1
+      1  100.0%        JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/apm_restify_demo.js:1:1
+      1  100.0%          JS: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    7.7%    JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/index.js:1:1
+      1  100.0%      JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/apm_restify_demo.js:1:1
+      1  100.0%        JS: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    7.7%    JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/apm_restify_demo.js:1:1
+      1  100.0%      JS: ~<anonymous> node:internal/main/run_main_module:1:1
+      1    7.7%    JS: ^<anonymous> node:internal/modules/cjs/loader:697:28
+      1  100.0%      JS: ^defaultResolveImpl node:internal/modules/cjs/loader:1046:30
+      1  100.0%        JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/semver/index.js:1:1
+      1  100.0%          JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/activation-method.js:1:1
+      1  100.0%            JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/agent.js:1:1
+      1    7.7%    JS: +wrapSafe node:internal/modules/cjs/loader:1628:18
+      1  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+      1  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      1  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      1  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+
+     13    2.1%  T ___pthread_init
+     10   76.9%    JS: ^wrapSafe node:internal/modules/cjs/loader:1628:18
+     10  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+     10  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+     10  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+     10  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      2   15.4%    JS: +wrapSafe node:internal/modules/cjs/loader:1628:18
+      2  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+      2  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      2  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      2  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      1    7.7%    JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%      JS: +requireBuiltin node:internal/bootstrap/realm:424:24
+      1  100.0%        JS: ~<anonymous> node:tls:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: +requireBuiltin node:internal/bootstrap/realm:424:24
+
+      8    1.3%  T _host_get_clock_service
+      8  100.0%    JS: ~spawnSync node:internal/child_process:1105:19
+      8  100.0%      JS: ~spawnSync node:child_process:823:19
+      8  100.0%        JS: ~detectHostname /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/apm-client/http-apm-client/detect-hostname.js:23:24
+      8  100.0%          JS: ~Client.config /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/apm-client/http-apm-client/index.js:240:36
+      5   62.5%            JS: ~Agent.setFramework /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/agent.js:429:41
+      3   37.5%            JS: ~Client /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/apm-client/http-apm-client/index.js:96:16
+
+      8    1.3%  /usr/lib/system/libsystem_malloc.dylib
+      2   25.0%    JS: +getNearestParentPackageJSON node:internal/modules/package_json_reader:144:37
+      1   50.0%      JS: ^trySelf node:internal/modules/cjs/loader:601:17
+      1  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1321:35
+      1  100.0%          JS: +defaultResolveImpl node:internal/modules/cjs/loader:1046:30
+      1  100.0%            JS: +resolveForCJSWithHooks node:internal/modules/cjs/loader:1041:32
+      1   50.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      1  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      1  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      1  100.0%            JS: +traceSync node:diagnostics_channel:320:12
+      1   12.5%    JS: ~spawnSync node:internal/child_process:1105:19
+      1  100.0%      JS: ~spawnSync node:child_process:823:19
+      1  100.0%        JS: ~detectHostname /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/apm-client/http-apm-client/detect-hostname.js:23:24
+      1  100.0%          JS: ~Client.config /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/apm-client/http-apm-client/index.js:240:36
+      1  100.0%            JS: ~Agent.setFramework /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/agent.js:429:41
+      1   12.5%    JS: ~configSecureContext node:internal/tls/secure-context:129:29
+      1  100.0%      JS: ~createSecureContext node:_tls_common:96:29
+      1  100.0%        JS: ~connect node:_tls_wrap:1744:35
+      1  100.0%          JS: ~createConnection node:https:141:26
+      1  100.0%            JS: ~createSocket node:_http_agent:296:53
+      1   12.5%    JS: ~TLSSocket.getPeerCertificate node:_tls_wrap:1118:50
+      1  100.0%      JS: ~onConnectSecure node:_tls_wrap:1665:25
+      1  100.0%        JS: ^emit node:events:454:44
+      1  100.0%          JS: ~TLSSocket._finishInit node:_tls_wrap:1052:43
+      1  100.0%            JS: ~ssl.onhandshakedone node:_tls_wrap:862:27
+      1   12.5%    JS: ~MetricsRegistry /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/metrics/registry.js:22:14
+      1  100.0%      JS: ~start /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/metrics/index.js:32:8
+      1  100.0%        JS: ~Agent.start /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/agent.js:274:34
+      1  100.0%          JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/apm_restify_demo.js:1:1
+      1  100.0%            JS: ~<anonymous> node:internal/main/run_main_module:1:1
+      1   12.5%    JS: ^read node:internal/modules/package_json_reader:107:14
+      1  100.0%      JS: ^readPackage node:internal/modules/package_json_reader:133:21
+      1  100.0%        JS: ^resolveExports node:internal/modules/cjs/loader:643:24
+      1  100.0%          JS: +<anonymous> node:internal/modules/cjs/loader:697:28
+      1  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1321:35
+      1   12.5%    JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%      JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1  100.0%        JS: ~<anonymous> node:perf_hooks:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+
+      8    1.3%  /usr/lib/libc++.1.dylib
+      4   50.0%    JS: ^wrapSafe node:internal/modules/cjs/loader:1628:18
+      4  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+      4  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      4  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      4  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      3   37.5%    JS: +wrapSafe node:internal/modules/cjs/loader:1628:18
+      3  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+      3  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      3  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      3  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      1   12.5%    JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%      JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1  100.0%        JS: ~<anonymous> node:internal/streams/duplex:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+
+      7    1.1%  t std::__1::ostreambuf_iterator<char, std::__1::char_traits<char>> std::__1::__pad_and_output[abi:nn180100]<char, std::__1::char_traits<char>>(std::__1::ostreambuf_iterator<char, std::__1::char_traits<char>>, char const*, char const*, char const*, std::__1::ios_base&, char)
+      3   42.9%    JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      3  100.0%      JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1   33.3%        JS: ~<anonymous> node:internal/streams/duplex:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      1   33.3%        JS: ~<anonymous> node:http:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/agent.js:1:1
+      1   33.3%        JS: ~<anonymous> node:_http_agent:1:1
+      1  100.0%          JS: ^compileForInternalLoader node:internal/bootstrap/realm:387:27
+      1  100.0%            JS: ^requireBuiltin node:internal/bootstrap/realm:424:24
+      2   28.6%    JS: +wrapSafe node:internal/modules/cjs/loader:1628:18
+      2  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1689:37
+      2  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1885:37
+      2  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1458:33
+      2  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+      1   14.3%    JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/apm_restify_demo.js:26:31
+      1  100.0%      JS: ^emit node:events:454:44
+      1  100.0%        JS: ~<anonymous> /Users/surfer/elastic/lab/nodejs_apm/node_modules/elastic-apm-node/lib/instrumentation/http-shared.js:100:21
+      1  100.0%          JS: ~emitListeningNT node:net:1977:25
+      1  100.0%            JS: ^processTicksAndRejections node:internal/process/task_queues:72:35
+
+      7    1.1%  T __kernelrpc_mach_port_get_set_status
+      2   28.6%    JS: +tryFile node:internal/modules/cjs/loader:534:17
+      1   50.0%      JS: ^tryPackage node:internal/modules/cjs/loader:492:20
+      1  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:697:28
+      1  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1321:35
+      1  100.0%            JS: ^patchedRequire /Users/surfer/elastic/lab/nodejs_apm/node_modules/require-in-the-middle/index.js:200:27
+      1   50.0%      JS: ^tryExtensions node:internal/modules/cjs/loader:549:23
+      1  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:697:28
+      1  100.0%          JS: ^<anonymous> node:internal/modules/cjs/loader:1321:35
+      1  100.0%            JS: ^defaultResolveImpl node:internal/modules/cjs/loader:1046:30
+      2   28.6%    JS: +tryExtensions node:internal/modules/cjs/loader:549:23
+      1   50.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:697:28
+      1  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1321:35
+      1  100.0%          JS: ^defaultResolveImpl node:internal/modules/cjs/loader:1046:30
+      1  100.0%            JS: ^resolveForCJSWithHooks node:internal/modules/cjs/loader:1041:32
+      1   50.0%      JS: +<anonymous> node:internal/modules/cjs/loader:697:28
+      1  100.0%        JS: +<anonymous> node:internal/modules/cjs/loader:1321:35
+      1  100.0%          JS: ^patchedRequire /Users/surfer/elastic/lab/nodejs_apm/node_modules/require-in-the-middle/index.js:200:27
+      1  100.0%            JS: ^Hook._require.Module.require /Users/surfer/elastic/lab/nodejs_apm/node_modules/require-in-the-middle/index.js:172:55
+      2   28.6%    JS: +stat node:internal/modules/cjs/loader:248:14
+      2  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:697:28
+      2  100.0%        JS: ^<anonymous> node:internal/modules/cjs/loader:1321:35
+      2  100.0%          JS: ^defaultResolveImpl node:internal/modules/cjs/loader:1046:30
+      2  100.0%            JS: ^resolveForCJSWithHooks node:internal/modules/cjs/loader:1041:32
+      1   14.3%    JS: +<anonymous> node:internal/modules/cjs/loader:697:28
+      1  100.0%      JS: ^<anonymous> node:internal/modules/cjs/loader:1321:35
+      1  100.0%        JS: +defaultResolveImpl node:internal/modules/cjs/loader:1046:30
+      1  100.0%          JS: ^resolveForCJSWithHooks node:internal/modules/cjs/loader:1041:32
+      1  100.0%            JS: ^<anonymous> node:internal/modules/cjs/loader:1191:24
+

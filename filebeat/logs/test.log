@@ -1,2 +1,0 @@
-{"timestamp":"2025-07-14 12:34:56","milliseconds":"123","loglevel":"INFO","component":"main","line":42,"filename":"app.js","log_message":"Test log entry","host.os.version":"14.5.1","host.os.name":"macOS"}
-{"timestamp":"2025-07-14 12:35:01","milliseconds":"456","loglevel":"ERROR","component":"worker","line":88,"filename":"worker.js","log_message":"Another test entry","host.os.version":"14.5.1","host.os.name":"macOS"}

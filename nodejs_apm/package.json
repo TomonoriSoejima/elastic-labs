@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "elastic-apm-node": "^4.13.0",
+    "restify": "^11.1.0"
+  }
+}
