@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Four Fish</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7faddc 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 3rem;
+            margin: 40px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .fish-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .fish-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .fish-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .fish-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .fish-info {
+            padding: 20px;
+        }
+
+        .fish-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .fish-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .fish-emoji {
+            font-size: 150px;
+            text-align: center;
+            padding: 50px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>� Meet Our Four Fish 🐟</h1>
+        
+        <div class="fish-grid">
+            <div class="fish-card">
+                <div class="fish-image">
+                    <div class="fish-emoji">🐠</div>
+                </div>
+                <div class="fish-info">
+                    <div class="fish-name">Bubbles</div>
+                    <div class="fish-description">
+                        A vibrant tropical fish with dazzling colors. Bubbles loves swimming through 
+                        coral reefs and making new friends in the aquarium!
+                    </div>
+                </div>
+            </div>
+
+            <div class="fish-card">
+                <div class="fish-image">
+                    <div class="fish-emoji">🐟</div>
+                </div>
+                <div class="fish-info">
+                    <div class="fish-name">Goldie</div>
+                    <div class="fish-description">
+                        A golden beauty with shimmering scales. Goldie is wise and peaceful, 
+                        spending her days gracefully gliding through the water.
+                    </div>
+                </div>
+            </div>
+
+            <div class="fish-card">
+                <div class="fish-image">
+                    <div class="fish-emoji">🐡</div>
+                </div>
+                <div class="fish-info">
+                    <div class="fish-name">Spike</div>
+                    <div class="fish-description">
+                        A pufferfish with a big personality! Spike may look spiky but is actually 
+                        quite friendly and loves exploring hidden caves.
+                    </div>
+                </div>
+            </div>
+
+            <div class="fish-card">
+                <div class="fish-image">
+                    <div class="fish-emoji">🦈</div>
+                </div>
+                <div class="fish-info">
+                    <div class="fish-name">Finn</div>
+                    <div class="fish-description">
+                        A sleek and speedy shark who's the guardian of the aquarium. 
+                        Don't worry, Finn only eats fish food and loves to race!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

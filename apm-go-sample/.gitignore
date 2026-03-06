@@ -1,0 +1,21 @@
+# Credentials and secrets
+credentials-*.csv
+.env
+elastic_apm.json
+
+# Logs
+*.log
+nohup.out
+
+# Go binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Go workspace file
+go.work
