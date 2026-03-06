@@ -1,0 +1,79 @@
+services:
+  demo-node:
+    build:
+      context: ./app
+    depends_on:
+      - python-worker
+      - java-worker
+      - go-worker
+    restart: unless-stopped
+    environment:
+      - ELASTIC_APM_SERVER_URL=${ELASTIC_APM_SERVER_URL}
+      - ELASTIC_APM_SECRET_TOKEN=${ELASTIC_APM_SECRET_TOKEN}
+      - ELASTIC_APM_SERVICE_NAME=${ELASTIC_APM_SERVICE_NAME:-demo-node}
+      - ELASTIC_APM_ENVIRONMENT=${ELASTIC_APM_ENVIRONMENT:-repro}
+      - ELASTIC_APM_LOG_LEVEL=${ELASTIC_APM_LOG_LEVEL:-info}
+      - ELASTIC_APM_KIBANA_URL=${ELASTIC_APM_KIBANA_URL:-}
+      - ELASTIC_CLOUD_API_BASE_URL=${ELASTIC_CLOUD_API_BASE_URL:-https://api.elastic-cloud.com}
+      - ELASTIC_CLOUD_API_PREFIX=${ELASTIC_CLOUD_API_PREFIX:-/api/v1}
+      - ELASTIC_CLOUD_AUTH_SCHEME=${ELASTIC_CLOUD_AUTH_SCHEME:-ApiKey}
+      - ELASTIC_CLOUD_API_KEY=${ELASTIC_CLOUD_API_KEY:-}
+      - ELASTIC_APM_TARGET_OVERRIDE_PATH=/shared/apm-target.override.json
+      - PYTHON_WORKER_URL=http://python-worker:3001
+      - JAVA_WORKER_URL=http://java-worker:3002
+      - GO_WORKER_URL=http://go-worker:3003
+    ports:
+      - "3000:3000"
+    volumes:
+      - apm-target-shared:/shared
+
+  python-worker:
+    build:
+      context: ./python_app
+    restart: unless-stopped
+    environment:
+      - ELASTIC_APM_SERVER_URL=${ELASTIC_APM_SERVER_URL}
+      - ELASTIC_APM_SECRET_TOKEN=${ELASTIC_APM_SECRET_TOKEN}
+      - ELASTIC_APM_SERVICE_NAME=${ELASTIC_APM_SERVICE_NAME:-demo-python}
+      - ELASTIC_APM_ENVIRONMENT=${ELASTIC_APM_ENVIRONMENT:-repro}
+      - ELASTIC_APM_TARGET_OVERRIDE_PATH=/shared/apm-target.override.json
+      - PORT=3001
+    expose:
+      - "3001"
+    volumes:
+      - apm-target-shared:/shared
+
+  java-worker:
+    build:
+      context: ./java_app
+    restart: unless-stopped
+    environment:
+      - ELASTIC_APM_SERVER_URL=${ELASTIC_APM_SERVER_URL}
+      - ELASTIC_APM_SECRET_TOKEN=${ELASTIC_APM_SECRET_TOKEN}
+      - ELASTIC_APM_SERVICE_NAME=${ELASTIC_APM_SERVICE_NAME:-demo-java}
+      - ELASTIC_APM_ENVIRONMENT=${ELASTIC_APM_ENVIRONMENT:-repro}
+      - ELASTIC_APM_TARGET_OVERRIDE_PATH=/shared/apm-target.override.json
+      - SERVER_PORT=3002
+    expose:
+      - "3002"
+    volumes:
+      - apm-target-shared:/shared
+
+  go-worker:
+    build:
+      context: ./go_app
+    restart: unless-stopped
+    environment:
+      - ELASTIC_APM_SERVER_URL=${ELASTIC_APM_SERVER_URL}
+      - ELASTIC_APM_SECRET_TOKEN=${ELASTIC_APM_SECRET_TOKEN}
+      - ELASTIC_APM_SERVICE_NAME=${ELASTIC_APM_SERVICE_NAME:-demo-go}
+      - ELASTIC_APM_ENVIRONMENT=${ELASTIC_APM_ENVIRONMENT:-repro}
+      - ELASTIC_APM_TARGET_OVERRIDE_PATH=/shared/apm-target.override.json
+      - PORT=3003
+    expose:
+      - "3003"
+    volumes:
+      - apm-target-shared:/shared
+
+volumes:
+  apm-target-shared:

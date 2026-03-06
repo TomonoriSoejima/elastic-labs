@@ -52,6 +52,15 @@
 **/venv/
 **/__pycache__/
 **/.pytest_cache/
+**/target/
+
+# Build artifacts
+**/*.class
+**/*.jar
+**/*.war
+**/.next/
+**/dist/
+**/build/
 
 # IDE
 **/.idea/
