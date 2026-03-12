@@ -85,10 +85,10 @@ curl -s -u "elastic:PASSWORD" \
 **Check gap count:**
 ```bash
 curl -s -u "elastic:PASSWORD" \
-  "https://deployment.es.region.gcp.elastic-cloud.com/.alerts-security.alerts-*/_count" \
+  "https://deployment.es.region.gcp.elastic-cloud.com/.kibana-event-log-*/_search" \
   -H "Content-Type: application/json" \
-  -d '{"query":{"term":{"kibana.alert.rule.gap.status":"unfill"}}}' \
-  | jq '.count'
+  -d '{"size":10,"query":{"term":{"event.action":"gap"}},"sort":[{"@timestamp":"desc"}]}' \
+  | jq '.hits.hits[]._source | {timestamp: .["@timestamp"], rule: .rule.name, duration: .kibana.alert.rule.gap.duration}'
 ```
 
 ## References
