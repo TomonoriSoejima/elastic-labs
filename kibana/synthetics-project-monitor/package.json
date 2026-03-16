@@ -1,0 +1,17 @@
+{
+  "name": "synthetics-project-monitor-lab",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "test:staging": "NODE_ENV=staging npx @elastic/synthetics --no-headless .",
+    "test:production": "NODE_ENV=production npx @elastic/synthetics --no-headless .",
+    "push:staging": "NODE_ENV=staging npx @elastic/synthetics push --yes",
+    "push:production": "NODE_ENV=production npx @elastic/synthetics push --yes"
+  },
+  "dependencies": {
+    "@elastic/synthetics": "^1.23.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.11.0"
+  }
+}
