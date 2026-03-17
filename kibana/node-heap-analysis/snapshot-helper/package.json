@@ -1,0 +1,9 @@
+{
+  "name": "snapshot-helper",
+  "version": "1.0.0",
+  "description": "CDP client to take V8 heap snapshots from a remote Node.js process",
+  "main": "server.js",
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
