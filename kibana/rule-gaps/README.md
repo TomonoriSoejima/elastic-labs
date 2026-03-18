@@ -32,6 +32,8 @@ so signals may have been missed. Consider increasing your look behind time or ad
 
 ## Quick Start
 
+> **💡 Tip:** For faster local testing, use the [local-stack](../../local-stack/) Docker setup instead of Cloud deployments.
+
 **1. Copy `.env` from alerts directory:**
 ```bash
 cp ../alerts/.env .
