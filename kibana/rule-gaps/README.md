@@ -16,6 +16,20 @@ This method creates predictable, demonstrable gaps.
 
 > **Note:** In practice, ~30 rules are needed to reliably reproduce gaps. The default of 5 is enough to verify the workflow. Increase with `NUM_RULES=30`.
 
+## Kibana Log Output When a Gap Occurs
+
+When a gap is detected, the following error appears in the Kibana server logs:
+
+```
+Executing Rule siem.queryRule:2e2188b6-7116-40b7-a2e8-b087c99237c9 has resulted in the following error(s):
+a minute (74065ms) were not queried between this rule execution and the last execution,
+so signals may have been missed. Consider increasing your look behind time or adding more Kibana instances
+```
+
+> **Important:** This message is **generic** — it fires whenever a gap is detected, regardless of the actual root cause. It does **not** reliably indicate Task Manager overload. The recommendation to "add more Kibana instances" may be misleading; the real cause could be slow queries (e.g. against Frozen/Cold tier nodes), too many rules, or other resource constraints.
+>
+> This behaviour is tracked in [elastic/kibana#190100](https://github.com/elastic/kibana/issues/190100), which proposes reclassifying this as a user error rather than a framework error.
+
 ## Quick Start
 
 **1. Copy `.env` from alerts directory:**
@@ -200,3 +214,4 @@ curl -s -u "elastic:PASSWORD" \
 
 - [Rule Monitoring - Gaps Table](https://www.elastic.co/guide/en/security/8.18/alerts-ui-monitor.html#gaps-table)
 - [Task Manager Production Considerations](https://www.elastic.co/guide/en/kibana/current/task-manager-production-considerations.html)
+- [elastic/kibana#190100](https://github.com/elastic/kibana/issues/190100) - Open issue: gap message miscategorised as framework error
