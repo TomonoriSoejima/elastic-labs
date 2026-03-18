@@ -44,6 +44,7 @@
 # Sensitive configs
 **/.env
 **/.env.*
+!**/.env.*.example
 **/config.production.*
 
 # Large dependencies

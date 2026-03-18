@@ -29,6 +29,23 @@ if [ -f "${CALLER_DIR}/.env" ]; then
   export $(grep -v '^#' "${CALLER_DIR}/.env" | xargs) 2>/dev/null || true
 fi
 
+# ---------- Check for localhost/manual configuration ----------
+if [ -n "${KIBANA_URL:-}" ] && [ -n "${ES_URL:-}" ] && [ -n "${KIBANA_PASSWORD:-}" ]; then
+  echo "==> Using manual configuration (localhost mode)..." >&2
+  export KIBANA_USER="${KIBANA_USER:-elastic}"
+  export AUTH="${KIBANA_USER}:${KIBANA_PASSWORD}"
+  export DEPLOYMENT_ID="${DEPLOYMENT_ID:-local}"
+  
+  echo "[✓] Kibana: ${KIBANA_URL}" >&2
+  echo "[✓] ES: ${ES_URL}" >&2
+  echo "[✓] Using ${KIBANA_USER} user credentials" >&2
+  echo "" >&2
+  
+  # Skip Cloud API discovery
+  return 0 2>/dev/null || exit 0
+fi
+
+# ---------- Cloud API mode ----------
 CLOUD_API_KEY="${ELASTIC_CLOUD_API_KEY:?ELASTIC_CLOUD_API_KEY not found. Add it to .env file.}"
 CLOUD_API_BASE="https://api.elastic-cloud.com/api/v1"
 

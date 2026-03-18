@@ -1,0 +1,51 @@
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION:-8.18.3}
+    container_name: ${ES_CONTAINER_NAME:-es-local}
+    hostname: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms${ES_HEAP:-1g} -Xmx${ES_HEAP:-1g}"
+    ports:
+      - "${ES_PORT:-9200}:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    networks:
+      - elastic
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:${STACK_VERSION:-8.18.3}
+    container_name: ${KB_CONTAINER_NAME:-kb-local}
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - xpack.security.enabled=false
+      - SERVER_PUBLICBASEURL=http://localhost:${KB_PORT:-5601}
+      - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=${ENCRYPTION_KEY_ESO:-min-32-char-string-for-encryption-key-here-12345}
+      - XPACK_REPORTING_ENCRYPTIONKEY=${ENCRYPTION_KEY_REPORTING:-min-32-char-string-for-reporting-key-here-abcde}
+      - XPACK_SECURITY_ENCRYPTIONKEY=${ENCRYPTION_KEY_SECURITY:-min-32-char-string-for-security-key-here-fghij}
+    ports:
+      - "${KB_PORT:-5601}:5601"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    networks:
+      - elastic
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:5601/api/status || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  es_data:
+    driver: local
+
+networks:
+  elastic:
+    driver: bridge
