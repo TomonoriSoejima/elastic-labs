@@ -2,6 +2,7 @@ services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION:-8.18.3}
     container_name: ${ES_CONTAINER_NAME:-es-local}
+    hostname: elasticsearch
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
