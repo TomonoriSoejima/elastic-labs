@@ -1,0 +1,22 @@
+services:
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.18.0
+    container_name: cef-pq-lab
+    ports:
+      - "5555:5555"
+      - "9600:9600"
+    volumes:
+      - ./config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./config/pipelines.yml:/usr/share/logstash/config/pipelines.yml:ro
+      - ./pipeline:/usr/share/logstash/pipeline:ro
+      - pq_data:/usr/share/logstash/data
+    environment:
+      - LS_JAVA_OPTS=-Xms512m -Xmx512m
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:9600/"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pq_data:

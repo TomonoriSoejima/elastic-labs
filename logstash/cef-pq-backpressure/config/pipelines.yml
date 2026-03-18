@@ -1,0 +1,6 @@
+- pipeline.id: cef-pq
+  path.config: "/usr/share/logstash/pipeline/cef-pq.conf"
+  queue.type: persisted
+  queue.max_bytes: 1gb
+  pipeline.workers: 2
+  pipeline.batch.size: 125
