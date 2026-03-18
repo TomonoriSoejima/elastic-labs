@@ -7,7 +7,7 @@ Testing and experimentation environments for Elastic products, organized by prod
 ```
 apm/          - APM instrumentation across multiple languages (11 labs)
 kibana/       - Kibana features and testing (1 lab)
-logstash/     - Logstash configurations and edge cases (1 lab)
+logstash/     - Logstash configurations and edge cases (2 labs)
 ```
 
 ## APM Labs (apm/)
@@ -40,6 +40,7 @@ logstash/     - Logstash configurations and edge cases (1 lab)
 ## Logstash Labs (logstash/)
 
 - `nanoseconds/` - Nanosecond timestamp precision testing
+- `cef-pq-backpressure/` - CEF codec failure events entering the PQ under backpressure (STACK-3087)
 
 ## Getting Started
 

@@ -11,7 +11,7 @@ set -euo pipefail
 
 # ---------- Configuration ----------
 NUM_RULES="${NUM_RULES:-5}"
-RULE_INTERVAL="${RULE_INTERVAL:-1s}"
+RULE_INTERVAL="${RULE_INTERVAL:-5s}"
 RULE_INDEX="${RULE_INDEX:-metrics-*}"
 
 echo "Creating ${NUM_RULES} test rules with ${RULE_INTERVAL} interval..."

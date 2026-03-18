@@ -6,9 +6,9 @@ Scripts for reproducing Security detection rule execution gaps through rule disa
 
 Create gaps by disabling rules, waiting, then re-enabling them manually via the Kibana UI or API.
 
-- Create test rules with a short interval (default: `1s`)
+- Create test rules with a short interval (default: `5s`)
 - Disable all test rules
-- Wait a few minutes
+- Wait 5 minutes
 - Re-enable all rules
 - Gaps appear in the monitoring window
 
@@ -33,9 +33,16 @@ ELASTIC_CLOUD_API_KEY=your-cloud-api-key-here
 bash create-test-rules.sh
 ```
 
-**4. In Kibana, disable the gap-test rules, wait a few minutes, then re-enable them:**
+**4. Create gaps (choose one method):**
 
-Security → Detection rules → filter by tag `gap-test` → select all → Disable → wait → Enable
+**Method A: Automated Script (Recommended)**
+```bash
+bash create-gaps.sh                    # disable for 5 min (default)
+DISABLE_DURATION=600 bash create-gaps.sh  # disable for 10 min
+```
+
+**Method B: Manual via Kibana UI**  
+Security → Detection rules → filter by tag `gap-test` → select all → Disable → wait 5 min → Enable
 
 **5. Monitor for gaps:**
 
@@ -58,6 +65,89 @@ GET .kibana-event-log-*/_search
 }
 ```
 
+## Querying Gaps by Rule Name Pattern
+
+The gap information displayed in **Security → Rules → (Rule Name) → Gaps** is stored in `.kibana-event-log-*` and can be queried via DevTools or Discover.
+
+### DevTools Query Example
+
+Search for gaps matching specific rule name patterns:
+
+```json
+GET .kibana-event-log-*/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "event.provider": "alerting"
+          }
+        },
+        {
+          "term": {
+            "event.action": "execute"
+          }
+        },
+        {
+          "exists": {
+            "field": "kibana.alert.rule.execution.gap_duration_s"
+          }
+        },
+        {
+          "wildcard": {
+            "rule.name": "Gap Test Rule*"
+          }
+        }
+      ],
+      "filter": [
+        {
+          "range": {
+            "@timestamp": {
+              "gte": "now-7d"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "sort": [
+    {
+      "@timestamp": {
+        "order": "desc"
+      }
+    }
+  ],
+  "_source": [
+    "@timestamp",
+    "rule.name",
+    "rule.id",
+    "kibana.alert.rule.execution.gap_duration_s",
+    "event.outcome",
+    "message"
+  ],
+  "size": 100
+}
+```
+
+### Key Fields
+
+- `kibana.alert.rule.execution.gap_duration_s` - Gap duration in seconds
+- `rule.name` - Rule name (supports wildcard and regexp queries)
+- `rule.id` - Rule ID
+- `event.outcome` - Execution outcome (success, failure, etc.)
+- `@timestamp` - Execution timestamp
+
+### Discover Method
+
+1. Index pattern: `.kibana-event-log-*`
+2. Add filters:
+   - `event.provider: alerting`
+   - `event.action: execute`
+   - `kibana.alert.rule.execution.gap_duration_s exists`
+   - `rule.name: Gap Test Rule*` (KQL wildcard)
+3. Add fields to table: `@timestamp`, `rule.name`, `kibana.alert.rule.execution.gap_duration_s`
+
 **6. Clean up when done:**
 ```bash
 bash cleanup-test-rules.sh
@@ -65,12 +155,27 @@ bash cleanup-test-rules.sh
 
 ## Configuration
 
-### Environment Variables (create-test-rules.sh)
+### Environment Variables
 
+**create-test-rules.sh:**
 - `NUM_RULES` - Number of rules to create (default: `5`, recommend `30` for reliable reproduction)
-- `RULE_INTERVAL` - Rule execution interval (default: `1s`)
+- `RULE_INTERVAL` - Rule execution interval (default: `5s`)
 - `RULE_INDEX` - Indices to query (default: `metrics-*`)
 - `DEPLOYMENT_ID` - Target deployment ID (auto-detected from first deployment if not set)
+
+**create-gaps.sh:**
+- `DISABLE_DURATION` - How long to disable rules in seconds (default: `300` = 5 minutes)
+
+**check-gaps.sh:**
+- `WATCH` - Enable continuous monitoring (default: `0`, set to `1` for watch mode)
+- `INTERVAL` - Check interval in seconds when watching (default: `30`)
+
+## Scripts Overview
+
+- `create-test-rules.sh` - Create detection rules with short intervals for gap testing
+- `create-gaps.sh` - Automated gap creation by disabling/waiting/re-enabling rules
+- `check-gaps.sh` - Query and display gaps from event log
+- `cleanup-test-rules.sh` - Delete all gap-test rules
 
 ## Monitoring Commands
 
