@@ -10,7 +10,7 @@
 
 When upgrading Logstash by extracting a `tar.gz` archive, the file ownership of the extracted files must match the `logstash` user running the service. If ownership is not explicitly set after extraction, a mismatch can occur.
 
-In this case, the customer reported:
+For example, after a tar.gz upgrade, the following UID mismatch was observed:
 
 - **VUP失敗環境（本番）**: `id logstash` → `uid=1002(logstash)`
 - **再現環境**: `id logstash` → `uid=992(logstash)`
