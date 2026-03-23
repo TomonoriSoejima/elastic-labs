@@ -1,6 +1,6 @@
 # Logstash — UID mismatch after tar.gz upgrade
 
-**Reproduces:** Logstash fails to start after upgrading via `tar.gz` + symlink swap when the `logstash` user UID on the target system does not match the UID embedded in the archive.
+**Reproduces:** Logstash fails to start after upgrading via `tar.gz` + symlink swap when a file ownership mismatch exists between the extracted files and the `logstash` service user on the system.
 
 **Related case:** 02035374
 
@@ -8,29 +8,32 @@
 
 ## Background
 
-Elastic `tar.gz` archives preserve file ownership as **numeric UIDs** from the build environment. The standard RPM-assigned UID for the `logstash` user is **992**.
+When upgrading Logstash by extracting a `tar.gz` archive, the file ownership of the extracted files must match the `logstash` user running the service. If ownership is not explicitly set after extraction, a mismatch can occur.
 
-When installing via RPM on a clean system, RPM creates the `logstash` user (uid=992) and sets file ownership in the same transaction — everything lines up.
+In this case, the customer reported:
 
-When extracting a `tar.gz` onto a system where UID 992 is already taken by another account, the OS assigns the next available UID (e.g. **1002**) to the `logstash` user. The extracted files are still owned by numeric UID 992, which is **not** the `logstash` user on that system.
+- **VUP失敗環境（本番）**: `id logstash` → `uid=1002(logstash)`
+- **再現環境**: `id logstash` → `uid=992(logstash)`
 
-Because `bin/logstash` has mode `750` (`rwxr-x---`), only the owner (uid=992) and group members can execute it. The `logstash` service user (uid=1002) falls into the "other" bucket and is denied.
+The production environment had a different UID assigned to the `logstash` user compared to the reproduction environment. After the tar.gz extraction, the file ownership did not match the `logstash` user on production, causing the following error when systemd tried to start the service:
 
 ```
-systemd: Failed at step EXEC spawning /usr/share/logstash/bin/logstash: Permission denied
+Failed at step EXEC spawning /usr/share/logstash/bin/logstash: Permission denied
 ```
+
+The reproduction environment worked because the `logstash` user UID happened to match the file owner — so no permission issue occurred.
 
 ---
 
-## Why the repro environment worked fine
+## What this test simulates
 
-The customer's reproduction environment used a fresh EC2 instance where UID 992 was not taken, so RPM assigned the `logstash` user uid=992 — matching the archive. The production server had uid=992 occupied, leading to the mismatch.
+The test script simulates the permission denied scenario by:
 
-| | Production (failed) | Repro env (succeeded) |
-|---|---|---|
-| `logstash` user UID | **1002** | **992** |
-| tar.gz file owner (numeric) | **992** | **992** |
-| Match? | No → Permission denied | Yes → OK |
+1. Creating a fake `logstash` binary owned by **uid=992** with mode `750` (`rwxr-x---`)
+2. **Case A**: Creates a `logstash` user with uid=**1002** (production) → execution fails
+3. **Case B**: Creates a `logstash` user with uid=**992** (repro env) → execution succeeds
+
+This demonstrates how a UID mismatch between the file owner and the service user leads to `Permission denied` when the binary mode is `750`.
 
 ---
 
@@ -67,7 +70,7 @@ Result: OK
 
 ## Fix
 
-After extracting the tar.gz, reset ownership to the local `logstash` user:
+After extracting the tar.gz, explicitly reset ownership to the local `logstash` user:
 
 ```bash
 sudo chown -R logstash:logstash /usr/share/logstash-7.17.x
@@ -75,4 +78,4 @@ sudo ln -sfn /usr/share/logstash-7.17.x /usr/share/logstash
 sudo systemctl restart logstash-opensearch.service
 ```
 
-> **Note:** For production upgrades, RPM (`rpm -Uvh`) is the recommended method as it handles user creation and file ownership atomically.
+> **Note:** For production upgrades, RPM (`rpm -Uvh`) is the recommended method as it handles user creation and file ownership atomically, avoiding this class of issue entirely.
