@@ -1,0 +1,47 @@
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.18.3
+    container_name: ffd-es
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=true
+      - xpack.license.self_generated.type=trial
+      - ELASTIC_PASSWORD=changeme
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    ports:
+      - "9250:9200"
+    networks:
+      - ffd
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf -u elastic:changeme http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.18.3
+    container_name: ffd-kb
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_SERVICEACCOUNTTOKEN=${KB_SERVICE_TOKEN}
+      - xpack.security.enabled=true
+      - SERVER_PUBLICBASEURL=http://localhost:5650
+      - XPACK_SECURITY_ENCRYPTIONKEY=ffd-security-encryption-key-min32chars!!
+      - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=ffd-savedobjects-encryption-key-32chars!
+      - XPACK_REPORTING_ENCRYPTIONKEY=ffd-reporting-encryption-key-32chars!!!
+    ports:
+      - "5650:5601"
+    networks:
+      - ffd
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:5601/api/status | grep -q available || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+
+networks:
+  ffd:
+    driver: bridge
