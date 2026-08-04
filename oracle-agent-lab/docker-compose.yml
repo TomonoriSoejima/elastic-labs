@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  oracle:
+    platform: linux/amd64
+    image: gvenzl/oracle-free:23-slim
+    container_name: oracle-test
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+    environment:
+      # Database will be initialized with this password
+      ORACLE_PASSWORD: OracleTest123
+      # Automatically create a PDB (Pluggable Database)
+      ORACLE_DATABASE: TESTPDB
+      # Enable Enterprise Features (needed for some monitoring views)
+      ENABLE_ARCHIVELOG: false
+      # Character set
+      ORACLE_CHARACTERSET: AL32UTF8
+    volumes:
+      # Persist Oracle data
+      - oracle-data:/opt/oracle/oradata
+      # Mount init scripts
+      - ./scripts/oracle-init:/opt/oracle/scripts/startup
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    networks:
+      - elastic
+
+  elastic-agent:
+    platform: linux/amd64
+    image: elastic-agent-oracle:8.15.0
+    container_name: elastic-agent-test
+    environment:
+      - FLEET_URL=https://84b61629cb7442c093fdcadd594d1c87.fleet.asia-northeast1.gcp.cloud.es.io:443
+      - FLEET_ENROLLMENT_TOKEN=Q09rMHk1OEJubU1LdmVyMjQ0U1U6WU9tLVlBT1FtXzBub2tGRV8xSHpKZw==
+      - FLEET_INSECURE=1
+    networks:
+      - elastic
+    depends_on:
+      oracle:
+        condition: service_healthy
+
+volumes:
+  oracle-data:
+    driver: local
+
+networks:
+  elastic:
+    driver: bridge
