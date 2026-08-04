@@ -33,7 +33,7 @@ services:
 
   elastic-agent:
     platform: linux/amd64
-    image: elastic-agent-oracle:8.15.0
+    image: elastic-agent-oracle:9.3.0
     container_name: elastic-agent-test
     environment:
       - FLEET_URL=https://84b61629cb7442c093fdcadd594d1c87.fleet.asia-northeast1.gcp.cloud.es.io:443

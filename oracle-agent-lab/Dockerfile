@@ -1,11 +1,10 @@
-FROM docker.elastic.co/beats/elastic-agent:8.15.0
+FROM elastic/elastic-agent:9.3.0
 
 USER root
 
-# Install Oracle dependencies
-RUN apt-get update && \
-    apt-get install -y libaio1 wget unzip && \
-    rm -rf /var/lib/apt/lists/*
+# Install Oracle dependencies (RHEL-based image uses microdnf)
+RUN microdnf install -y libaio wget unzip && \
+    microdnf clean all
 
 # Download and install Oracle Instant Client
 RUN mkdir -p /opt/oracle && \
