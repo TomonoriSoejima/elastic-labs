@@ -5,7 +5,7 @@ Pre-configured Docker environment for testing Oracle integrations with Elastic A
 ## Features
 
 - **Oracle Database 23c Free** (gvenzl/oracle-free:23-slim)
-- **Custom Elastic Agent 8.15.0** with Oracle Instant Client 23.4 baked in
+- **Custom Elastic Agent 9.3.0** with Oracle Instant Client 23.4 baked in
 - Monitoring user with all required grants pre-configured
 - No runtime installation needed - Oracle client persists across container restarts
 
@@ -13,7 +13,7 @@ Pre-configured Docker environment for testing Oracle integrations with Elastic A
 
 ```bash
 # Build custom agent image (one time)
-docker build --platform linux/amd64 -t elastic-agent-oracle:8.15.0 .
+docker build --platform linux/amd64 -t elastic-agent-oracle:9.3.0 .
 
 # Start the lab
 docker-compose up -d
@@ -42,7 +42,7 @@ The `elastic_monitor` user has:
 - SELECT on 11 V_$ views (SYSMETRIC, SYSTEM_EVENT, SESSION, DATABASE, INSTANCE, etc.)
 
 ### Elastic Agent
-- **Version:** 8.15.0
+- **Version:** 9.3.0
 - **Oracle Client:** Instant Client 23.4 basiclite
 - **Library Path:** `/opt/oracle/instantclient_23_4`
 - **Platform:** linux/amd64 (required for Oracle client compatibility on ARM Macs)
@@ -50,12 +50,14 @@ The `elastic_monitor` user has:
 ## Testing Queries
 
 ```bash
-# Test tablespace query
+# Quick test - count tablespaces
 docker exec oracle-test bash -c "echo 'SELECT COUNT(*) FROM dba_tablespaces;' | sqlplus -s elastic_monitor/ElasticMon123@localhost:1521/FREEPDB1"
 
-# Run the full integration query
-docker exec oracle-test sqlplus elastic_monitor/ElasticMon123@localhost:1521/FREEPDB1 @analysis/tablespace-query.sql
+# Run SQL files from host machine (pipe method)
+cat analysis/tablespace-query.sql | docker exec -i oracle-test sqlplus -s elastic_monitor/ElasticMon123@localhost:1521/FREEPDB1
 ```
+
+**Note:** The `@filename` syntax in sqlplus looks for files **inside** the container's filesystem. Since SQL files are on your host machine, use the pipe method shown above to execute them.
 
 ## Customization
 
@@ -101,7 +103,7 @@ docker-compose down
 docker-compose down -v
 
 # Remove custom image
-docker rmi elastic-agent-oracle:8.15.0
+docker rmi elastic-agent-oracle:9.3.0
 ```
 
 ## Notes
