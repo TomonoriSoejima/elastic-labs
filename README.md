@@ -5,9 +5,10 @@ Testing and experimentation environments for Elastic products, organized by prod
 ## Structure
 
 ```
-apm/          - APM instrumentation across multiple languages (11 labs)
-kibana/       - Kibana features and testing (1 lab)
-logstash/     - Logstash configurations and edge cases (2 labs)
+apm/            - APM instrumentation across multiple languages (11 labs)
+elasticsearch/  - Elasticsearch features and edge cases (1 lab)
+kibana/         - Kibana features and testing (1 lab)
+logstash/       - Logstash configurations and edge cases (2 labs)
 ```
 
 ## APM Labs (apm/)
@@ -32,6 +33,10 @@ logstash/     - Logstash configurations and edge cases (2 labs)
 - `nodejs-restify/` - Restify framework with APM
 - `nodejs-mysql/` - Full-stack Node.js + MySQL + APM
 - `nodejs-sqlite/` - Containerized Node.js + SQLite + APM
+
+## Elasticsearch Labs (elasticsearch/)
+
+- `role-alias-privileges/` - Deprecation warning when a role grants privileges on an alias but not its backing indices; reproduces the warning and verifies the fix
 
 ## Kibana Labs (kibana/)
 
