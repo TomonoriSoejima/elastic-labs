@@ -1,6 +1,6 @@
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION:-8.18.3}
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION:-9.4.0}
     container_name: ${ES_CONTAINER_NAME:-es-local}
     hostname: elasticsearch
     environment:
@@ -20,7 +20,7 @@ services:
       retries: 30
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:${STACK_VERSION:-8.18.3}
+    image: docker.elastic.co/kibana/kibana:${STACK_VERSION:-9.4.0}
     container_name: ${KB_CONTAINER_NAME:-kb-local}
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
