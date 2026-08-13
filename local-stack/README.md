@@ -11,7 +11,7 @@ bash scripts/start.sh
 
 **Access:**
 - Elasticsearch: http://localhost:9200
-- Kibana: http://localhost:5601
+- Kibana: http://localhost:5602
 
 **Stop:**
 ```bash
@@ -26,7 +26,7 @@ bash scripts/reset.sh
 ## Configuration
 
 Edit `.env` (created on first run) to customize:
-- `STACK_VERSION` - Elastic Stack version (default: 8.18.3)
+- `STACK_VERSION` - Elastic Stack version (default: 9.5.1)
 - `ES_PORT` / `KB_PORT` - Port numbers
 - `ES_HEAP` - Elasticsearch heap size
 - Container names, credentials, encryption keys
@@ -34,7 +34,7 @@ Edit `.env` (created on first run) to customize:
 ## Modes
 
 - **Default** (`bash scripts/start.sh`): No authentication, fast testing
-- **Security** (`bash scripts/start.sh security`): Authentication enabled (elastic/changeme)
+- **Security** (`bash scripts/start.sh security`): Authentication + TLS enabled (elastic/changeme), access via `https://`
 
 ## Usage Example
 

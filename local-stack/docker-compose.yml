@@ -1,6 +1,6 @@
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION:-9.4.0}
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION:-9.5.1}
     container_name: ${ES_CONTAINER_NAME:-es-local}
     hostname: elasticsearch
     environment:
@@ -20,17 +20,18 @@ services:
       retries: 30
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:${STACK_VERSION:-9.4.0}
+    image: docker.elastic.co/kibana/kibana:${STACK_VERSION:-9.5.1}
     container_name: ${KB_CONTAINER_NAME:-kb-local}
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-      - xpack.security.enabled=false
-      - SERVER_PUBLICBASEURL=http://localhost:${KB_PORT:-5601}
+      - XPACK_SECURITY_ENABLED=false
+      - XPACK_INTERACTIVE_SETUP_ENABLED=false
+      - SERVER_PUBLICBASEURL=http://localhost:${KB_PORT:-5602}
       - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=${ENCRYPTION_KEY_ESO:-min-32-char-string-for-encryption-key-here-12345}
       - XPACK_REPORTING_ENCRYPTIONKEY=${ENCRYPTION_KEY_REPORTING:-min-32-char-string-for-reporting-key-here-abcde}
       - XPACK_SECURITY_ENCRYPTIONKEY=${ENCRYPTION_KEY_SECURITY:-min-32-char-string-for-security-key-here-fghij}
     ports:
-      - "${KB_PORT:-5601}:5601"
+      - "${KB_PORT:-5602}:5601"
     depends_on:
       elasticsearch:
         condition: service_healthy
