@@ -3,6 +3,7 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION:-9.5.1}
     container_name: ${ES_CONTAINER_NAME:-es-local}
     hostname: elasticsearch
+    restart: unless-stopped
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
@@ -22,6 +23,7 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:${STACK_VERSION:-9.5.1}
     container_name: ${KB_CONTAINER_NAME:-kb-local}
+    restart: unless-stopped
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
       - XPACK_SECURITY_ENABLED=false
