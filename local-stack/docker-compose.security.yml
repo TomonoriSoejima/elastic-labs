@@ -48,10 +48,11 @@ services:
       - ELASTICSEARCH_USERNAME=kibana_system
       - ELASTICSEARCH_PASSWORD=${KIBANA_SYSTEM_PASSWORD:-changeme}
       - SERVER_PUBLICBASEURL=http://localhost:${KB_PORT:-5602}
-      - XPACK_FLEET_ENABLED=true
       - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=${ENCRYPTION_KEY_ESO:-min-32-char-string-for-encryption-key-here-12345}
       - XPACK_REPORTING_ENCRYPTIONKEY=${ENCRYPTION_KEY_REPORTING:-min-32-char-string-for-reporting-key-here-abcde}
       - XPACK_SECURITY_ENCRYPTIONKEY=${ENCRYPTION_KEY_SECURITY:-min-32-char-string-for-security-key-here-fghij}
+    volumes:
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml:ro
     ports:
       - "${KB_PORT:-5602}:5601"
     depends_on:
@@ -79,6 +80,7 @@ services:
       - KIBANA_FLEET_USERNAME=elastic
       - KIBANA_FLEET_PASSWORD=${ELASTIC_PASSWORD:-changeme}
       - FLEET_URL=http://fleet-server-local:8220
+      - FLEET_SERVER_POLICY_ID=fleet-server-policy
     ports:
       - "${FLEET_PORT:-8220}:8220"
     depends_on:
