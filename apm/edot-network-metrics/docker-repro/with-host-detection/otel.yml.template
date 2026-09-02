@@ -1,0 +1,77 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
+  hostmetrics:
+    collection_interval: 10s
+    root_path: /
+    scrapers:
+      cpu:
+        metrics:
+          system.cpu.utilization:
+            enabled: true
+          system.cpu.logical.count:
+            enabled: true
+      memory:
+        metrics:
+          system.memory.utilization:
+            enabled: true
+      network: {}
+      processes: {}
+      load: {}
+      disk: {}
+
+processors:
+  elasticapm: {}
+  resource/set-service-name:
+    attributes:
+      - action: upsert
+        key: service.name
+        value: 'mfrs_judge_system'
+  resourcedetection:
+    detectors: [system, env, docker]
+    system:
+      hostname_sources: ["os"]
+    timeout: 2s
+
+connectors:
+  elasticapm: {}
+
+exporters:
+  otlp/elastic_apm:
+    endpoint: "${APM_ENDPOINT}"
+    headers:
+      Authorization: "ApiKey ${APM_API_KEY}"
+
+service:
+  telemetry:
+    metrics:
+      readers:
+        - pull:
+            exporter:
+              prometheus:
+                host: '0.0.0.0'
+                port: 8888
+    resource:
+      service.name: 'mfrs_judge_system'
+
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [resource/set-service-name, elasticapm]
+      exporters: [elasticapm, otlp/elastic_apm]
+    metrics/aggregated-metrics:
+      receivers: [elasticapm]
+      processors: []
+      exporters: [otlp/elastic_apm]
+    metrics/fromsdk:
+      receivers: [otlp]
+      processors: [resource/set-service-name, elasticapm]
+      exporters: [elasticapm, otlp/elastic_apm]
+    metrics/hostmetrics:
+      receivers: [hostmetrics]
+      processors: [resourcedetection, resource/set-service-name, elasticapm]
+      exporters: [elasticapm, otlp/elastic_apm]
