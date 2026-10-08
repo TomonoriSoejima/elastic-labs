@@ -6,6 +6,7 @@ Testing and experimentation environments for Elastic products, organized by prod
 
 ```
 apm/            - APM instrumentation across multiple languages (11 labs)
+elastic-agent/  - Elastic Agent / Beats input edge cases (1 lab)
 elasticsearch/  - Elasticsearch features and edge cases (1 lab)
 kibana/         - Kibana features and testing (1 lab)
 logstash/       - Logstash configurations and edge cases (2 labs)
@@ -33,6 +34,10 @@ logstash/       - Logstash configurations and edge cases (2 labs)
 - `nodejs-restify/` - Restify framework with APM
 - `nodejs-mysql/` - Full-stack Node.js + MySQL + APM
 - `nodejs-sqlite/` - Containerized Node.js + SQLite + APM
+
+## Elastic Agent Labs (elastic-agent/)
+
+- `winlog-archive-rotation-loss/` - GCP Windows VM repro of permanent Windows Security event loss across an archive-on-full log rotation switchover (winlog input, beats#53655)
 
 ## Elasticsearch Labs (elasticsearch/)
 
